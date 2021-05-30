@@ -12,8 +12,8 @@ class BooksAPI(Resource):
     @jwt_required()
     def get(self):
         books_collection = books.objects().to_json()
-        collection = json.dumps(json.loads(books_collection), indent=4)
-        return Response(collection, mimetype="application/json", status=200)
+        #collection = json.dumps(json.loads(books_collection), indent=4)
+        return Response(books_collection, mimetype="application/json", status=200)
         
     @jwt_required()
     def post(self):
