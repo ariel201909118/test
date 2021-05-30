@@ -5,3 +5,4 @@ def initialize_route(api):
     api.add_resource(SingleBookAPI, '/books/<id>')
     api.add_resource(RegisterAPI, '/auth/register')
     api.add_resource(LoginAPI, '/auth/login')
+    
