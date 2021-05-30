@@ -9,13 +9,13 @@ import json
 
 class BooksAPI(Resource):
     
-    @jwt_required()
+    @jwt_required
     def get(self):
         books_collection = books.objects().to_json()
         collection = json.dumps(json.loads(books_collection), indent=4)
         return Response(collection, mimetype="application/json", status=200)
         
-    @jwt_required()
+    @jwt_required
     def post(self):
         body = request.get_json()
         book = books(**body).save()
@@ -24,18 +24,18 @@ class BooksAPI(Resource):
 
 class SingleBookAPI(Resource):
     
-    @jwt_required()
+    @jwt_required
     def get(self, id):
         book = books.objects.get(book_id=id).to_json()
         return Response(book, mimetype="application/json", status=200)
     
-    @jwt_required()
+    @jwt_required
     def put(self, id):
         body = request.get_json()
         books.objects.get(book_id=id).update(**body)
         return 'Book Updated', 200
     
-    @jwt_required()    
+    @jwt_required    
     def delete(self, id):
         books.objects.get(book_id=id).delete()
         return Response('Book Deleted Successfully', mimetype="application/json", status=200)
