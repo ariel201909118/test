@@ -5,15 +5,15 @@ from flask_jwt_extended.view_decorators import jwt_required
 import datetime
 from flask_jwt_extended import create_access_token
 import json
-####################################################
+
 
 class BooksAPI(Resource):
     
     @jwt_required()
     def get(self):
         books_collection = books.objects().to_json()
-        #collection = json.dumps(json.loads(books_collection), indent=4)
-        return Response(books_collection, mimetype="application/json", status=200)
+        collection = json.dumps(json.loads(books_collection), indent=4)
+        return Response(collection, mimetype="application/json", status=200)
         
     @jwt_required()
     def post(self):
